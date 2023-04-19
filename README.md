@@ -1,7 +1,7 @@
-NGINX
+HAProxy
 =========
 
-Installation of nginx server
+Installation of haproxy server
 
 Requirements
 ------------
@@ -25,7 +25,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - nginx
+         - haproxy
 
 Author Information
 ------------------

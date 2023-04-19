@@ -1,3 +1,4 @@
 ---
-nginx_port: "80"
-# defaults file for nginx
+haproxy_backends_servers:
+  web1: 192.168.60.4
+# defaults file for haproxy

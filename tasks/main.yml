@@ -1,24 +1,24 @@
 ---
-- name: "NGINX | Installation"
+- name: "HAProxy | Installation"
   become: true
   ansible.builtin.apt:
-    name: nginx
+    name: haproxy
     state: present
 
-- name: "NGINX | Configuration"
-  become: true
-  ansible.builtin.template:
-    src: default.j2
-    dest: /etc/nginx/sites-available/default
+- name: "HAProxy | Fichier de configuration"
+  ansible.builtin.copy:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
     mode: "0744"
 
-- name: "NGINX | Fichier"
-  become: true
-  ansible.builtin.template:
-    src: index.html.j2
-    dest: /var/www/html/index.html
-    mode: "0744"
-  notify: "NGINX | Restart"
+- name: "HAProxy | Ajout des serveurs"
+  ansible.builtin.lineinfile:
+    path: /etc/haproxy/haproxy.cfg
+    line: "server {{ item.key }} {{ item.value }}:80 check"
+    insertafter: EOF
+  with_dict:
+    - "{{ haproxy_backends_servers }}"
+  notify: "HAProxy | Restart"
 ...
 
-# tasks file for nginx
+# tasks file for haproxy

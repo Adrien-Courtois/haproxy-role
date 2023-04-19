@@ -1,9 +1,9 @@
 ---
-- name: "NGINX | Restart"
+- name: "HAProxy | Restart"
   become: true
   ansible.builtin.service:
-    name: nginx
+    name: haproxy
     state: restarted
 ...
 
-# handlers file for nginx
+# handlers file for haproxy

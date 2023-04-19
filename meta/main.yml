@@ -1,6 +1,6 @@
 galaxy_info:
   author: Adrien COURTOIS
-  description: Installation de NGINX
+  description: Installation de HAProxy
   # company: your company (optional)
 
   # If the issue tracker for your role is not on github, uncomment the
