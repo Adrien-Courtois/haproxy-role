@@ -16,7 +16,7 @@
   become: true
   ansible.builtin.lineinfile:
     path: /etc/haproxy/haproxy.cfg
-    line: "\t\tserver {{ item.key }} {{ item.value }}:80 check"
+    line: "\tserver {{ item.key }} {{ item.value }}:80 check"
     insertafter: EOF
   with_dict:
     - "{{ haproxy_backends_servers }}"
