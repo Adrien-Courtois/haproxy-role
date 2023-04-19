@@ -7,19 +7,10 @@
 
 - name: "HAProxy | Fichier de configuration"
   become: true
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
     mode: "0744"
-
-- name: "HAProxy | Ajout des serveurs"
-  become: true
-  ansible.builtin.lineinfile:
-    path: /etc/haproxy/haproxy.cfg
-    line: "\tserver {{ item.key }} {{ item.value }}:80 check"
-    insertafter: EOF
-  with_dict:
-    - "{{ haproxy_backends_servers }}"
   notify: "HAProxy | Restart"
 ...
 
